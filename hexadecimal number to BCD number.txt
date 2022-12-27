@@ -1,0 +1,28 @@
+9.	Write a 8085 program to convert a given hexadecimal number to BCD number.
+	Algo:
+1)Initialize memory pointer to 4150H  location. 
+2) Get the Hexadecimal number in C-register.
+3)Perform repeated addition for  C number of times.
+4) Adjust for  BCD at each step.
+5) Store the BCD data in Memory.
+
+    Program:
+   LXI H,C050	// Initialize memory pointer
+	   MVI D,00	// Clear D- reg for Most significant Byte
+	   XRA A	// Clear Accumulator
+	   MOV C,M	// Get HEX data
+
+LOOP2:	   ADI 01	// Count the number one by one
+	   DAA	// Adjust for BCD count
+	   JNC LOOP1
+	   INR D
+
+LOOP1:	   DCR C
+	   JNZ LOOP2
+	   STA C051	// Store the Least Significant Byte
+	   MOV A,D
+	   STA C052	// Store the Most Significant Byte
+	   HLT
+// HEX TO BCD
+# ORG C050H
+# DB FF

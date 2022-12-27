@@ -1,0 +1,33 @@
+4.	Division of two 8 bit number.
+Algo:
+1.Start the Program.
+2.Load value of divisior.
+3.Move value of Accumulator to B.
+4.Load value of dividend.
+5. Initialize the carry with zero.
+6. Compare the 8 bit instructions in A and B registers. Subtract B register from accumulator & increment the value in C register.
+7.Increment the HL pair and move the content in accumulator to memory.
+8.Store the value at specific memory location.
+9.Stop the program.
+
+Program:
+# ORG 2000H
+# BEGIN 2000H
+	   LDA 2502	// divisor
+	   MOV B,A
+	   LDA 2501  //dividend
+	   MVI C,00
+
+LOOP:	   CMP B
+	   JC AHEAD
+	   SUB B
+	   INR C
+	   JMP LOOP
+
+AHEAD:	   
+	   STA 2503 //Remainder
+	   MOV A,C
+                          STA  2504  //Quotient
+	   HLT
+# ORG 2501H
+# DB 05H,03H

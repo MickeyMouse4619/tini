@@ -1,0 +1,25 @@
+10.	Write a 8085 program to convert a BCD number into hexadecimal number.
+ Algo:
+1)Initialize memory pointer to 4150H  location. 
+2) Get the Most Significant Digit (MSD).
+3)Multiply the MSD by ten using repeated addition
+4) Add the Least Significant Digit (LSD) to the result obtained in previous step.
+5) Store the HEX data in Memory.
+
+    Program:
+LXI H,C050H
+MOV A,M
+ADD A
+MOV B,A
+ADD A
+ADD A
+ADD B
+INX H
+ADD M
+INX H
+MOV M,A
+HLT
+
+//BCD TO HEX
+#ORG C050H
+#DB 02H,09H

@@ -1,0 +1,32 @@
+2.	Subtraction of two 8 bit numbers (Single program should satisfy the following cases)
+
+Case:1 When minuend is greater than subtrahend
+Case 2: When minuend is smaller than subtrahend.
+Algo:
+1. Start the program.
+2. Load the first data in the accumulator.
+3. Initialize the carry with zero.
+4.Move value at memory to the accumulator.
+5.Now load value of second data.
+6.Sub content at Memory and accumulator(M-A) and store it in Accumulator.
+7.If the carry is “0” then store the result which is specified.
+8.If the carry is “1” then increment the C register and store the result.
+9.Stop the program.
+Program:
+//8 BIT SUBSTRACTION
+# BEGIN 0000H
+	   LXI H,C050
+	   MVI C,00
+	   MOV A,M
+	   INX H
+	   SUB M
+	   JNC AHEAD
+	   INR C
+
+AHEAD:	   STA C053
+	   MOV A,C
+	   STA C052
+	   HLT
+
+# ORG C050
+# DB 08H,03H

@@ -1,0 +1,32 @@
+3.	Multiplication two 8 bit numbers, result is 16 bit number.
+Algo:
+1. Start the program.
+2. Load the first data in the accumulator.
+3.Move value at Accumulator to C.
+4.Load the second data in the accumulator.
+5.Move value at Accumulator to B.
+6.Now clear accumulator by moving 00 to accumulator.
+7.Create a loop in which the second data is added with itself to get multiplication of two numbers upto no. of second data. i.e. if the number is 5 and 2 then we have to add 2 to 2 for 5 times ,2+2+2+2+2=10.
+8.Store the data.
+9.Stop the program.
+Program:
+# BEGIN 0000H
+	   LDA C050H
+	   MOV C,A
+	   LDA C051H
+	   MOV B,A
+	   MVI A,00H
+
+LOOP:	   ADD B
+	   DCR C
+	   JNZ LOOP
+	   STA C052H
+	   MVI A,00H
+	   JNC LABEL
+	   INR A
+
+LABEL:	   STA C053H
+	   HLT
+// multiplication of two numbers
+# ORG C050
+# DB 05H,02H
